@@ -104,7 +104,7 @@
                             <td><img src="{{ platform.img_url }}" alt="{{ platform.nombre }}"></td>
                             <td>
                                 <a href="{% url 'update_platform' platform.id %}">Editar</a>
-                                <a href="#">Eliminar</a>
+                                <a href="{% url 'delete_platform' platform.id %}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}

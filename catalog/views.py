@@ -9,6 +9,7 @@ def index(request):
         'juegos': juegos
     })
 
+#CRUD de Plataformas
 def new_platform(request):
     if request.method == 'POST':
         platform_form = PlataformaForm(request.POST)
@@ -39,3 +40,12 @@ def update_platform(request, id):
         platform_form = PlataformaForm(instance=platform)
 
     return render(request, 'update_platform.html', {'platform_form': platform_form})
+
+def delete_platform(request, id):
+    platform_form = Plataforma.objects.get(id=id)
+    
+    if request.method == 'POST':
+        platform_form.delete()
+        return redirect('platform_list')
+
+    return render(request, 'delete_platform.html', {'platform_form': platform_form})
