@@ -68,3 +68,25 @@ def genre_list(request):
     return render(request, 'genres/genre_list.html', {
         'genres': genres
     })
+
+def update_genre(request, id):
+    genre = Genero.objects.get(id=id)
+
+    if request.method == 'POST':
+        genre_form = GeneroForm(request.POST, instance=genre)
+        if genre_form.is_valid():
+            genre_form.save()
+            return redirect('genre_list')
+    else:
+        genre_form = GeneroForm(instance=genre)
+
+    return render(request, 'genres/update_genre.html', {'genre_form': genre_form})
+
+def delete_genre(request, id):
+    genre_form = Genero.objects.get(id=id)
+    
+    if request.method == 'POST':
+        genre_form.delete()
+        return redirect('genre_list')
+
+    return render(request, 'genres/delete_genre.html', {'genre_form': genre_form})

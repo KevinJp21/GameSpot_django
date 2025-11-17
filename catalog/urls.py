@@ -12,4 +12,6 @@ urlpatterns = [
     #CRUD de Generos
     path('new_genre/', views.new_genre, name='new_genre'),
     path('genre_list/', views.genre_list, name='genre_list'),
+    path('update_genre/<int:id>/', views.update_genre, name='update_genre'),
+    path('delete_genre/<int:id>/', views.delete_genre, name='delete_genre'),
 ]

@@ -99,8 +99,8 @@
                         <tr>
                             <td>{{ genre.nombre }}</td>
                             <td>
-                                <a href="#">Editar</a>
-                                <a href="#">Eliminar</a>
+                                <a href="{% url 'update_genre' genre.id %}">Editar</a>
+                                <a href="{% url 'delete_genre' genre.id %}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}
