@@ -27,8 +27,8 @@ class Juego(models.Model):
     titulo = models.CharField(max_length=150)
     descripcion = models.TextField(null=True, blank=True)
     fecha_lanzamiento = models.DateField(null=True, blank=True)
-    plataforma = models.ForeignKey(Plataforma, on_delete=models.CASCADE)
-    genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
+    plataforma = models.ManyToManyField(Plataforma)
+    genero = models.ManyToManyField(Genero)
     desarrollador = models.ForeignKey(Desarrollador, on_delete=models.CASCADE)
     img_url = models.TextField(null=True, blank=True)
 
