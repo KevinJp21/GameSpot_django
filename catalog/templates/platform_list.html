@@ -103,7 +103,7 @@
                             <td>{{ platform.fabricante }}</td>
                             <td><img src="{{ platform.img_url }}" alt="{{ platform.nombre }}"></td>
                             <td>
-                                <a href="#">Editar</a>
+                                <a href="{% url 'update_platform' platform.id %}">Editar</a>
                                 <a href="#">Eliminar</a>
                             </td>
                         </tr>

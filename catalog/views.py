@@ -22,6 +22,20 @@ def new_platform(request):
 
 def platform_list(request):
     platforms = Plataforma.objects.all()
+
     return render(request, 'platform_list.html', {
         'platforms': platforms
     })
+
+def update_platform(request, id):
+    platform = Plataforma.objects.get(id=id)
+
+    if request.method == 'POST':
+        platform_form = PlataformaForm(request.POST, instance=platform)
+        if platform_form.is_valid():
+            platform_form.save()
+            return redirect('platform_list')
+    else:
+        platform_form = PlataformaForm(instance=platform)
+
+    return render(request, 'update_platform.html', {'platform_form': platform_form})
