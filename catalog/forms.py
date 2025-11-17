@@ -11,3 +11,8 @@ class GeneroForm(forms.ModelForm):
     class Meta:
         model = Genero
         fields = '__all__'
+
+class DesarrolladorForm(forms.ModelForm):
+    class Meta:
+        model = Desarrollador
+        fields = '__all__'

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Plataforma, Genero
-from .forms import PlataformaForm, GeneroForm
+from .models import Juego, Plataforma, Genero, Desarrollador
+from .forms import PlataformaForm, GeneroForm, DesarrolladorForm
 
 # Create your views here.
 def index(request):
@@ -90,3 +90,44 @@ def delete_genre(request, id):
         return redirect('genre_list')
 
     return render(request, 'genres/delete_genre.html', {'genre_form': genre_form})
+
+#CRUD de Desarrolladores
+def new_developer(request):
+    if request.method == 'POST':
+        developer_form = DesarrolladorForm(request.POST)
+        if developer_form.is_valid():
+            developer_form.save()
+            return redirect('developer_list')
+    else:
+        developer_form = DesarrolladorForm()
+
+    return render(request, 'developers/new_developer.html', {'developer_form': developer_form})
+
+def developer_list(request):
+    developers = Desarrollador.objects.all()
+
+    return render(request, 'developers/developer_list.html', {
+        'developers': developers
+    })
+
+def update_developer(request, id):
+    developer = Desarrollador.objects.get(id=id)
+
+    if request.method == 'POST':
+        developer_form = DesarrolladorForm(request.POST, instance=developer)
+        if developer_form.is_valid():
+            developer_form.save()
+            return redirect('developer_list')
+    else:
+        developer_form = DesarrolladorForm(instance=developer)
+
+    return render(request, 'developers/update_developer.html', {'developer_form': developer_form})
+
+def delete_developer(request, id):
+    developer_form = Desarrollador.objects.get(id=id)
+
+    if request.method == 'POST':
+        developer_form.delete()
+        return redirect('developer_list')
+
+    return render(request, 'developers/delete_developer.html', {'developer_form': developer_form})

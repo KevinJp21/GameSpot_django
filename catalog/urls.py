@@ -14,4 +14,10 @@ urlpatterns = [
     path('genre_list/', views.genre_list, name='genre_list'),
     path('update_genre/<int:id>/', views.update_genre, name='update_genre'),
     path('delete_genre/<int:id>/', views.delete_genre, name='delete_genre'),
+
+    #CRUD de Desarrolladores
+    path('new_developer/', views.new_developer, name='new_developer'),
+    path('developer_list/', views.developer_list, name='developer_list'),
+    path('update_developer/<int:id>/', views.update_developer, name='update_developer'),
+    path('delete_developer/<int:id>/', views.delete_developer, name='delete_developer'),
 ]
