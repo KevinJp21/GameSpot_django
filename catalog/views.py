@@ -19,12 +19,12 @@ def new_platform(request):
     else:
         platform_form = PlataformaForm()
 
-    return render(request, 'new_platform.html', {'platform_form': platform_form})
+    return render(request, 'platforms/new_platform.html', {'platform_form': platform_form})
 
 def platform_list(request):
     platforms = Plataforma.objects.all()
 
-    return render(request, 'platform_list.html', {
+    return render(request, 'platforms/platform_list.html', {
         'platforms': platforms
     })
 
@@ -39,7 +39,7 @@ def update_platform(request, id):
     else:
         platform_form = PlataformaForm(instance=platform)
 
-    return render(request, 'update_platform.html', {'platform_form': platform_form})
+    return render(request, 'platforms/update_platform.html', {'platform_form': platform_form})
 
 def delete_platform(request, id):
     platform_form = Plataforma.objects.get(id=id)
@@ -48,4 +48,4 @@ def delete_platform(request, id):
         platform_form.delete()
         return redirect('platform_list')
 
-    return render(request, 'delete_platform.html', {'platform_form': platform_form})
+    return render(request, 'platforms/delete_platform.html', {'platform_form': platform_form})
