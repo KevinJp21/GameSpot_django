@@ -1,117 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Plataformas</title>
-</head>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+{% extends 'base.html' %}
 
-    body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        background-color: #0a0e27;
-        color: #ffffff;
-    }
+{% block title %}Listado de Plataformas{% endblock %}
 
-    .table_container {
-        overflow-x: auto;
-    }
-
-    .platform_list_section {
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 4rem 1rem;
-    }
-
-    .platform_list_section h1 {
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .platform_list_section > a{
-        display: block;
-        color: #14ffec;
-        text-decoration: underline;
-        font-weight: 600;
-        margin-top: 1rem;
-        text-align: center;
-        font-size: 1.5rem;
-    }
-
-    .platform_list_section table,
-    .platform_list_section table th,
-    .platform_list_section table td {
-        border: 1px solid #14ffec;
-        border-collapse: collapse;
-    }
-
-    .platform_list_section table {
-        width: 100%;
-    }
-
-    .platform_list_section table th,
-    .platform_list_section table td {
-        padding: 1rem;
-    }
-
-    .platform_list_section table th {
-        background-color: #14ffec;
-        color: #0a0e27;
-    }
-
-    .platform_list_section table td {
-        background-color: #1a1f3a;
-        color: #ffffff;
-    }
-
-    .platform_list_section table td a {
-        color: #14ffec;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .platform_list_section tr img {
-        display: block;
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-        margin: 0 auto;
-    }
-</style>
-<body>
-    <section class="platform_list_section">
-        <h1>Listado de Plataformas</h1>
-        <div class="table_container">
-            <table>
-                <thead>
+{% block content %}
+<section class="list_section">
+    <h1>Listado de Plataformas</h1>
+    <div class="table_container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fabricante</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for platform in platforms %}
                     <tr>
-                        <th>Nombre</th>
-                        <th>Fabricante</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
+                        <td>{{ platform.nombre }}</td>
+                        <td>{{ platform.fabricante }}</td>
+                        <td><img src="{{ platform.img_url }}" alt="{{ platform.nombre }}"></td>
+                        <td>
+                            <a href="{% url 'update_platform' platform.id %}">Editar</a>
+                            <a href="{% url 'delete_platform' platform.id %}">Eliminar</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for platform in platforms %}
-                        <tr>
-                            <td>{{ platform.nombre }}</td>
-                            <td>{{ platform.fabricante }}</td>
-                            <td><img src="{{ platform.img_url }}" alt="{{ platform.nombre }}"></td>
-                            <td>
-                                <a href="{% url 'update_platform' platform.id %}">Editar</a>
-                                <a href="{% url 'delete_platform' platform.id %}">Eliminar</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <a href="{% url 'new_platform' %}">Agregar Plataforma</a>
-    </section>
-</body>
-</html>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'new_platform' %}">Agregar Plataforma</a>
+</section>
+{% endblock %}

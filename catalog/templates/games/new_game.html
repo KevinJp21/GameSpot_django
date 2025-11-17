@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Editar Plataforma{% endblock %}
+{% block title %}Agregar Juego{% endblock %}
 
 {% block content %}
 <section class="form_section">
-    <h1>Editar Plataforma</h1>
+    <h1>Agregar Juego</h1>
     <form method="post">
         {% csrf_token %}
-        {{ platform_form.as_div }}
-        <button type="submit">Actualizar</button>
+        {{ game_form.as_div }}
+        <button type="submit">Guardar</button>
     </form>
 </section>
 {% endblock %}

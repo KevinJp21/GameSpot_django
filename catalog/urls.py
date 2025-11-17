@@ -20,4 +20,10 @@ urlpatterns = [
     path('developer_list/', views.developer_list, name='developer_list'),
     path('update_developer/<int:id>/', views.update_developer, name='update_developer'),
     path('delete_developer/<int:id>/', views.delete_developer, name='delete_developer'),
+
+    #CRUD de Juegos
+    path('new_game/', views.new_game, name='new_game'),
+    path('game_list/', views.game_list, name='game_list'),
+    path('update_game/<int:id>/', views.update_game, name='update_game'),
+    path('delete_game/<int:id>/', views.delete_game, name='delete_game'),
 ]

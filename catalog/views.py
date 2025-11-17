@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Juego, Plataforma, Genero, Desarrollador
-from .forms import PlataformaForm, GeneroForm, DesarrolladorForm
+from .forms import PlataformaForm, GeneroForm, DesarrolladorForm, GameForm
 
 # Create your views here.
 def index(request):
@@ -131,3 +131,44 @@ def delete_developer(request, id):
         return redirect('developer_list')
 
     return render(request, 'developers/delete_developer.html', {'developer_form': developer_form})
+
+#CRUD de Juegos
+def new_game(request):
+    if request.method == 'POST':
+        game_form = GameForm(request.POST)
+        if game_form.is_valid():
+            game_form.save()
+            return redirect('game_list')
+    else:
+        game_form = GameForm()
+
+    return render(request, 'games/new_game.html', {'game_form': game_form})
+
+def game_list(request):
+    games = Juego.objects.all()
+
+    return render(request, 'games/game_list.html', {
+        'games': games
+    })
+
+def update_game(request, id):
+    game_form = Juego.objects.get(id=id)
+
+    if request.method == 'POST':
+        game_form = GameForm(request.POST, instance=game_form)
+        if game_form.is_valid():
+            game_form.save()
+            return redirect('game_list')
+    else:
+        game_form = GameForm(instance=game_form)
+
+    return render(request, 'games/update_game.html', {'game_form': game_form})
+
+def delete_game(request, id):
+    game_form = Juego.objects.get(id=id)
+
+    if request.method == 'POST':
+        game_form.delete()
+        return redirect('game_list')
+
+    return render(request, 'games/delete_game.html', {'game_form': game_form})

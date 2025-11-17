@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Juegos{% endblock %}
+
+{% block content %}
+<section class="list_section">
+    <h1>Listado de Juegos</h1>
+    <div class="table_container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>Desarrollador</th>
+                    <th>Generos</th>
+                    <th>Plataformas</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                    <tr>
+                        <td>{{ game.titulo }}</td>
+                        <td>{{ game.descripcion }}</td>
+                        <td>{{ game.fecha_lanzamiento }}</td>
+                        <td>{{ game.desarrollador }}</td>
+                        <td>{{ game.genero.all|join:', ' }}</td>
+                        <td>{{ game.plataforma.all|join:', ' }}</td>
+                        <td><img src="{{ game.img_url }}" alt="{{ game.titulo }}"></td>
+                        <td>
+                            <a href="{% url 'update_game' game.id %}">Editar</a>
+                            <a href="{% url 'delete_game' game.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'new_game' %}">Agregar Juego</a>
+</section>
+{% endblock %}
+{% block extra_css %}
+<style>
+.list_section table th,
+.list_section table td {
+    width: 200px;
+}
+
+.list_section tr img {
+    width: 150px;
+    height: 100%;
+    border-radius: 10px;
+}
+</style>
+{% endblock %}

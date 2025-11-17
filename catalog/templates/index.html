@@ -1,181 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo de Juegos</title>
-    <style>
-        *{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #0a0e27;
-        }
+{% extends 'base.html' %}
 
-        .catalog_section{
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 4rem 1rem;
-        }
+{% block title %}Catalogo de Juegos{% endblock %}
 
-        .catalog_section h1{
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, #14ffec, #ffffff);;
-            font-weight: 400;
-            background-clip: text;
-            color: transparent;
-        }
+{% block content %}
+<section class="catalog_section">
+    <h1>Catálogo de Juegos</h1>
 
-        .game_grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .game_card{
-            background: #1a1f3a;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all .3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-        }
-
-        .game_card:hover{
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(20, 255, 236, 0.3);
-        }
-
-        .game_card_image{
-            width: 100%;
-            height: 330px;
-            overflow: hidden;
-            position: relative;
-            margin: 0 auto;
-        }
-
-       
-        .game_card_image img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .game_card_content{
-            padding: 1.5rem;
-        }
-
-        .game_card_content h3{
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: #ffffff;
-            font-weight: 700;
-        }
-        .game_card_platforms{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .game_card_platforms img{
-            width: fit-content;
-            height: 20px;
-            object-fit: cover;
-        }
-
-        .game_card_developer{
-            color: #14ffec;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .game_card_description{
-            color: #a0aec0;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .game_card_genres{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .game_card_genres span{
-            background: rgba(20, 255, 236, 0.1);
-            color: #14ffec;
-            padding: 0.3rem 0.8rem;
-            border: 1px solid rgba(20, 255, 236, 0.3);
-            border-radius: 20px;
-        }
-
-        .game_card_release_date{
-            color: #a0aec0;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        
-    </style>
-</head>
-<body>
-    <section class="catalog_section">
-        <h1>
-            Catálogo de Juegos
-        </h1>
-
-        {% if juegos %}
-        <div class="game_grid">
-            {% for juego in juegos %}
-                <div class="game_card">
-                    <div class="game_card_image">
-                        <img src="{{ juego.img_url }}" alt="{{ juego.titulo }}">
-                    </div>
-                    <div class="game_card_content">
-                        <h3>
-                            {{ juego.titulo }}
-                        </h3>
-                        <div class="game_card_platforms">
-                            {% for plataforma in juego.plataforma.all %}
-                                <img src="{{ plataforma.img_url }}" alt="{{ plataforma.nombre }}">
-                            {% endfor %}
-                        </div>
-                        <p class="game_card_developer">
-                            {{ juego.desarrollador.nombre }} - {{ juego.desarrollador.pais }}
-                        </p>
-                        <p class="game_card_description">
-                            {{ juego.descripcion }}
-                        </p>
-                        <div class="game_card_genres">
-                            {% for genero in juego.genero.all %}
-                                <span>
-                                    {{ genero.nombre }}
-                                </span>
-                            {% endfor %}
-                        </div>
-                        <span class="game_card_release_date">
-                            Lanzado el: {{ juego.fecha_lanzamiento }}
-                        </span>
-
-                    </div>
+    {% if juegos %}
+    <div class="game_grid">
+        {% for juego in juegos %}
+            <div class="game_card">
+                <div class="game_card_image">
+                    <img src="{{ juego.img_url }}" alt="{{ juego.titulo }}">
                 </div>
-            {% endfor %}
-
-        </div>
-        {% else %}
-        <p style="color: #ffffff; font-size: 1.5rem; text-align: center; margin-top: 2rem;">
-            No hay juegos disponibles
-        </p>
-        {% endif %}
-    </section>
-</body>
-</html>
+                <div class="game_card_content">
+                    <h3>
+                        {{ juego.titulo }}
+                    </h3>
+                    <div class="game_card_platforms">
+                        {% for plataforma in juego.plataforma.all %}
+                            <img src="{{ plataforma.img_url }}" alt="{{ plataforma.nombre }}">
+                        {% endfor %}
+                    </div>
+                    <p class="game_card_developer">
+                        {{ juego.desarrollador.nombre }} - {{ juego.desarrollador.pais }}
+                    </p>
+                    <p class="game_card_description">
+                        {{ juego.descripcion }}
+                    </p>
+                    <div class="game_card_genres">
+                        {% for genero in juego.genero.all %}
+                            <span>
+                                {{ genero.nombre }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <span class="game_card_release_date">
+                        Lanzado el: {{ juego.fecha_lanzamiento }}
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="color: #ffffff; font-size: 1.5rem; text-align: center; margin-top: 2rem;">
+        No hay juegos disponibles
+    </p>
+    {% endif %}
+</section>
+{% endblock %}
