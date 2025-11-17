@@ -47,5 +47,29 @@
         No hay juegos disponibles
     </p>
     {% endif %}
+    <div class="links_container">
+        <a href="{% url 'game_list' %}">Listado de Juegos</a>
+        <a href="{% url 'platform_list' %}">Listado de Plataformas</a>
+        <a href="{% url 'genre_list' %}">Listado de Generos</a>
+        <a href="{% url 'developer_list' %}">Listado de Desarrolladores</a>
+    </div>
 </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .links_container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    .links_container a {
+        color: #14ffec;
+        font-weight: 600;
+    }
+    .links_container a:hover {
+        color: #ffffff;
+    }
+</style>
 {% endblock %}
