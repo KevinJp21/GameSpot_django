@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Plataforma
-from .forms import PlataformaForm
+from .models import Juego, Plataforma, Genero
+from .forms import PlataformaForm, GeneroForm
 
 # Create your views here.
 def index(request):
@@ -49,3 +49,22 @@ def delete_platform(request, id):
         return redirect('platform_list')
 
     return render(request, 'platforms/delete_platform.html', {'platform_form': platform_form})
+
+#CRUD de Generos
+def new_genre(request):
+    if request.method == 'POST':
+        genre_form = GeneroForm(request.POST)
+        if genre_form.is_valid():
+            genre_form.save()
+            return redirect('genre_list')
+    else:
+        genre_form = GeneroForm()
+
+    return render(request, 'genres/new_genre.html', {'genre_form': genre_form})
+
+def genre_list(request):
+    genres = Genero.objects.all()
+
+    return render(request, 'genres/genre_list.html', {
+        'genres': genres
+    })

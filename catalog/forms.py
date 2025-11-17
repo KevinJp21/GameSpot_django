@@ -6,3 +6,8 @@ class PlataformaForm(forms.ModelForm):
     class Meta:
         model = Plataforma
         fields = '__all__'
+
+class GeneroForm(forms.ModelForm):
+    class Meta:
+        model = Genero
+        fields = '__all__'
