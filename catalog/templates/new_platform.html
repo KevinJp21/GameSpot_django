@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +98,7 @@
         <h1>Agregar Plataforma</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_div }}
+            {{ platform_form.as_div }}
             <button type="submit">Guardar</button>
         </form>
     </section>
