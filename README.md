@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
-**GameSpot** es una aplicación web desarrollada con Django que permite gestionar un catálogo completo de videojuegos. El sistema facilita la administración de juegos, plataformas, géneros y desarrolladores mediante una interfaz web intuitiva con operaciones CRUD (Create, Read, Update, Delete) completas.
+**GameSpot** es una aplicación web desarrollada con Django que permite gestionar un catálogo completo de videojuegos. El sistema facilita la administración de juegos, plataformas, géneros y desarrolladores mediante una interfaz web con operaciones CRUD (Create, Read, Update, Delete) completas usando ModelForm.
 
 ---
 
@@ -25,12 +25,12 @@ cd GameSpot
 #### 2. **Crear Entorno Virtual**
 ```bash
 # Windows
-python -m venv venv
-venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 
 # Linux/Mac
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 #### 3. **Instalar Dependencias**
@@ -202,7 +202,7 @@ class Juego(models.Model):
 
 ---
 
-## 🔧 CRUD con ModelForms
+## CRUD con ModelForms
 
 El proyecto implementa **CRUD completo** para las 4 entidades utilizando Django ModelForms.
 
