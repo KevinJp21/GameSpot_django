@@ -114,7 +114,7 @@ El sistema utiliza **4 modelos principales** con relaciones bien definidas:
 
 ### Diagrama Modelo Entidad Relación
 
-![Modelo Entidad Relacion](https://github.com/KevinJp21/GameSpot_django/blob/294a1b44ab4c3b8445287b2df2bfbae47f028503/MER%20GameSpot.png?raw=true)
+![Modelo Entidad Relacion](https://github.com/KevinJp21/GameSpot_django/blob/c0947e55b7d94863085e228be255b05d37ed6213/MER-GameSpot.png?raw=true)
 
 ### Descripción de Modelos
 
